@@ -24,10 +24,8 @@ function incrementValue(val) {
 }
 
 function buildResponse(value) {
-  console.log(value);
-
   const priorityJsonClone = Object.assign({}, priorityJson);
-
+  value = decodeURI(value);
   let tempObj = {};
 
   for (const priorityVal in priorityJson) {
