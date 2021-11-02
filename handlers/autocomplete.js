@@ -4,14 +4,13 @@ const path = require("path");
 const priorityJson = require(__dirname + "/../Data/priority.json");
 const dataJson = require(__dirname + "/../Data/products.json");
 
-//Runs once each time server starts up
+//Runs once each time server starts up and updates priority list with any missing values.
 function updatePriorityList() {
   for (const val of dataJson) {
     priorityJson[val["title"]] = priorityJson[val["title"]] || 0;
   }
   fs.writeFileSync(__dirname + "/../Data/priority.json", JSON.stringify(priorityJson, undefined, 2));
 }
-
 updatePriorityList();
 
 function buildResponse(value) {
