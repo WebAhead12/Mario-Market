@@ -15,6 +15,7 @@ updatePriorityList();
 
 function buildResponse(value) {
   //Check if value is complete
+  return {};
   for (const val of dataJson) {
     if (val["title"] == value) return;
   }
@@ -31,16 +32,8 @@ function autocompleteHandler(request, response) {
   const urlArray = url.split("/");
   const value = urlArray[1];
 
-  fs.readFile(filePath, (error, file) => {
-    if (error) {
-      console.log(error);
-      response.writeHead(404, { "content-type": "application/json" });
-      response.end();
-    } else {
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(buildResponse(value));
-    }
-  });
+  response.writeHead(200, { "content-type": "application/json" });
+  response.end(buildResponse(value));
 }
 
 module.exports = autocompleteHandler;
