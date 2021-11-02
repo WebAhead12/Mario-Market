@@ -9,7 +9,10 @@ function updatePriorityList() {
   for (const val of dataJson) {
     priorityJson[val["title"]] = priorityJson[val["title"]] || 0;
   }
-  fs.writeFileSync(__dirname + "/../Data/priority.json", JSON.stringify(priorityJson, undefined, 2));
+  fs.writeFileSync(
+    __dirname + "/../Data/priority.json",
+    JSON.stringify(priorityJson, undefined, 2)
+  );
 }
 updatePriorityList();
 
