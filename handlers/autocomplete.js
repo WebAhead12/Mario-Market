@@ -1,31 +1,38 @@
 const fs = require("fs");
 const path = require("path");
 
-const priorityJson = require(__dirname + "/../Data/priority.json");
+const AUTOCOMPLETE_NUM = 5;
+
+let priorityJson = require(__dirname + "/../Data/priority.json");
 const dataJson = require(__dirname + "/../Data/products.json");
 
-//Runs once each time server starts up and updates priority list with any missing values.
+//Runs once on server start up and updates/removes priority list with any missing/extra values.
 function updatePriorityList() {
+  let tempObj = {};
   for (const val of dataJson) {
-    priorityJson[val["title"]] = priorityJson[val["title"]] || 0;
+    tempObj[val["title"]] = priorityJson[val["title"]] || 0;
   }
+  priorityJson = tempObj;
   fs.writeFileSync(__dirname + "/../Data/priority.json", JSON.stringify(priorityJson, undefined, 2));
 }
 updatePriorityList();
 
 function buildResponse(value) {
   //Check if value is complete
-  return {};
-  for (const val of dataJson) {
-    if (val["title"] == value) return;
+  for (const val in priorityJson) {
+    if (val == value) return;
   }
-  //Check if value priority exists and get top 5;
   let tempObj = {};
   for (const priorityVal in priorityJson) {
-    console.log(priorityVal);
+    if (priorityVal.slice(0, value.length).toLocaleLowerCase() == value.toLowerCase()) tempObj[priorityVal] = priorityJson[priorityVal];
   }
+  //Get sorted array of the objects.
+  let tempArr = Object.entries(tempObj).sort((a, b) => b[1] - a[1]);
+  //convert first 5 entries into an object
+  tempObj = {};
+  for (let i = 0; i < AUTOCOMPLETE_NUM && i < tempArr.length; i++) tempObj[i] = tempArr[i][0];
+  return tempObj;
 }
-// buildResponse("Test");
 
 function autocompleteHandler(request, response) {
   const url = request.url;
