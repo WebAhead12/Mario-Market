@@ -8,22 +8,12 @@ const types = {
 };
 
 function publicHandler(request, response) {
-  console.log();
+  const url = request.url;
+  const urlArray = url.split(".");
+  const extension = urlArray[1];
+  const type = types[extension];
+  const filePath = path.join(__dirname, "..", url);
 
-  const type = types[request.url.split(".")[1]];
-  let filePath = "";
-  console.log(type);
-  switch (type) {
-    case types.css:
-      filePath = path.join(__dirname, "..", "public", "style.css");
-      break;
-    case types.js:
-      filePath = path.join(__dirname, "..", "public", "script.js");
-      break;
-    case types.jpg:
-      filePath = path.join(__dirname, "..", "public", "network.jpg");
-      break;
-  }
   fs.readFile(filePath, (error, file) => {
     if (error) {
       console.log(error);
