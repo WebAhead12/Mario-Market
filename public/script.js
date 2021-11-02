@@ -3,16 +3,7 @@ const button = document.querySelector(".buttonContainer");
 const productSearch = document.querySelector(".products");
 const SEARCH_DEFAULT = 5; // ade ybyn bl suggested
 
-input.addEventListener("keyup", (event) => {
-  if (event.key == " ") return;
-  if (input.value == "") {
-    for (let i = 0; i < SEARCH_DEFAULT; i++) {
-      document.querySelector(`.product${i}`).style.display = "none";
-      document.querySelector(`.product${i}`).textContent = "";
-    }
-    return;
-  }
-
+function fetchAutoComplete() {
   fetch(`autocomplete/${input.value}`)
     .then((response) => {
       console.log(response);
@@ -39,14 +30,23 @@ input.addEventListener("keyup", (event) => {
         }
       }
     });
+}
+
+input.addEventListener("keyup", (event) => {
+  if (event.key == " ") return;
+  if (input.value == "") {
+    for (let i = 0; i < SEARCH_DEFAULT; i++) {
+      document.querySelector(`.product${i}`).style.display = "none";
+      document.querySelector(`.product${i}`).textContent = "";
+    }
+    return;
+  }
+  fetchAutoComplete();
 });
 productSearch.addEventListener("click", (event) => {
   console.log(event.target.innerHTML);
   input.value = event.target.innerHTML;
-  for (let i = 1; i <= SEARCH_DEFAULT; i++) {
-    document.querySelector(`.product${i}`).style.display = "none";
-    document.querySelector(`.product${i}`).textContent = "";
-  }
+  fetchAutoComplete();
 });
 
 button.addEventListener("click", () => {
