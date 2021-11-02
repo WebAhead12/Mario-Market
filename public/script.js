@@ -1,25 +1,37 @@
 const input = document.querySelector("#productInputs");
 const button = document.querySelector(".buttonContainer");
 const productSearch = document.querySelector(".products");
-const product1 = document.querySelector(".prod1");
-const product2 = document.querySelector(".prod2");
-const product3 = document.querySelector(".prod3");
-const product4 = document.querySelector(".prod4");
-const product5 = document.querySelector(".prod5");
+const SEARCH_DEFAULT = 5; // ade ybyn bl suggested
+
 input.addEventListener("keyup", (event) => {
+  if (event.key == " ") return;
+  if (input.value == "") {
+    for (let i = 1; i <= SEARCH_DEFAULT; i++) {
+      document.querySelector(`.product${i}`).style.display = "none";
+      document.querySelector(`.product${i}`).textContent = "";
+    }
+    return;
+  }
+
   fetch(`autocomplete/${input.value}`)
     .then((response) => {
+      console.log(response);
       if (!response.ok) throw new Error(response.status);
       return response.json();
     })
     //creates the profile picture and the followings
     .then((data) => {
+      console.log(data);
       if (Object.keys(data).length == 0) {
-        elDiv.textInput = "There is no such product";
-        etabdiv.style.display = "none"; //lma etab tsme
+        for (let i = 1; i <= SEARCH_DEFAULT; i++) {
+          document.querySelector(`.product${i}`).style.display = "none";
+          document.querySelector(`.product${i}`).textContent = "";
+        }
       } else {
-        for (let i = 0; i < Object.keys(data).length; i++) {
-          product[i + 1].textInput = data[i];
+        console.log(Object.keys(data), Object.keys(data).length);
+        for (let i = 1; i <= Object.keys(data).length; i++) {
+          document.querySelector(`.product${i}`).style.display = "block";
+          document.querySelector(`.product${i}`).textContent = data[i - 1];
         }
       }
     });
