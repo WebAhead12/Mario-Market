@@ -1,5 +1,7 @@
-const input = document.querySelector(".productInputs");
+const input = document.querySelector("#productInputs");
 const button = document.querySelector(".buttonContainer");
+const productSearch = document.querySelector(".products");
+
 input.addEventListener("keyup", (event) => {
   fetch(`autocomplete/${input.value}`)
     .then((response) => {
@@ -14,6 +16,10 @@ input.addEventListener("keyup", (event) => {
       }
     });
 });
+productSearch.addEventListener("click", (event) => {
+  console.log(event.target.innerHTML);
+  input.value = event.target.innerHTML;
+});
 
 button.addEventListener("click", () => {
   const inputSearch = input.value;
@@ -27,5 +33,7 @@ button.addEventListener("click", () => {
       if (!response.ok) throw new Error(response.status);
       return response.json();
     })
-    .then({});
+    .then((results) => {
+      //add the results to the screen
+    });
 });
