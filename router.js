@@ -11,7 +11,7 @@ function router(request, response) {
   } else if (url.includes("public")) {
     publicHandler(request, response);
   } else if (url.includes("autocomplete")) {
-    autocompleteHandler(request, response);
+    autocompleteHandler.autocompleteHandler(request, response);
   } else if (url.includes("data")) {
     dataHandler(request, response);
   } else {

@@ -17,6 +17,11 @@ function updatePriorityList() {
 }
 updatePriorityList();
 
+function incrementValue(val) {
+  priorityJson[val] = priorityJson[val] + 1;
+  fs.writeFileSync(__dirname + "/../Data/priority.json", JSON.stringify(priorityJson, undefined, 2));
+}
+
 function buildResponse(value) {
   //Check if value is complete
   for (const val in priorityJson) {
@@ -40,7 +45,7 @@ function autocompleteHandler(request, response) {
   const value = urlArray[1];
 
   response.writeHead(200, { "content-type": "application/json" });
-  response.end(buildResponse(value));
+  response.end(JSON.stringify(buildResponse(value)));
 }
 
-module.exports = autocompleteHandler;
+module.exports = { autocompleteHandler, incrementValue };
