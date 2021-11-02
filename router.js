@@ -1,5 +1,7 @@
 const homeHandler = require("./handlers/home");
 const publicHandler = require("./handlers/public");
+const autocompleteHandler = require("./handlers/autocomplete");
+const dataHandler = require("./handlers/data");
 const missingHandler = require("./handlers/missing");
 
 function router(request, response) {
@@ -8,6 +10,10 @@ function router(request, response) {
     homeHandler(request, response);
   } else if (url.includes("public")) {
     publicHandler(request, response);
+  } else if (url.includes("autocomplete")) {
+    autocompleteHandler(request, response);
+  } else if (url.includes("data")) {
+    dataHandler(request, response);
   } else {
     missingHandler(request, response);
   }
