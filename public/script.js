@@ -17,10 +17,9 @@ input.addEventListener("keyup", (event) => {
       if (Object.keys(data).length == 0) {
         elDiv.textInput = "There is no such product";
         etabdiv.style.display = "none"; //lma etab tsme
-      }
-      else{
-        for(let i = 0; i < Object.keys(data).length){
-          product[i+1].textInput = data[i];
+      } else {
+        for (let i = 0; i < Object.keys(data).length; i++) {
+          product[i + 1].textInput = data[i];
         }
       }
     });
