@@ -29,11 +29,11 @@ function buildResponse(value) {
   let tempObj = {};
 
   for (const priorityVal in priorityJson) {
-    if (priorityVal.slice(0, value.length).toLowerCase() == value) tempObj[priorityVal] = priorityJsonClone[priorityVal];
-    // if (priorityVal.toLowerCase().indexOf(value) === 0) tempObj[priorityVal] = priorityJson[priorityVal];
+    // if (priorityVal.slice(0, value.length).toLowerCase() == value) tempObj[priorityVal] = priorityJsonClone[priorityVal];
+    if (priorityVal.toLowerCase().indexOf(value) === 0) tempObj[priorityVal] = priorityJson[priorityVal];
   }
-  //Check if value is complete
-  delete tempObj[value];
+  //Remove same word from complete
+  for (const tempVal in tempObj) if (tempVal.toLowerCase() == value) delete tempObj[tempVal];
 
   //Get sorted array of the objects.
   let tempArr = Object.entries(tempObj).sort((a, b) => b[1] - a[1]);

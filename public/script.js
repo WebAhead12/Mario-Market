@@ -43,6 +43,7 @@ input.addEventListener("keyup", (event) => {
   }
   fetchAutoComplete();
 });
+
 productSearch.addEventListener("click", (event) => {
   console.log(event.target.innerHTML);
   input.value = event.target.innerHTML;
