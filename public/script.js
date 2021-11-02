@@ -39,6 +39,10 @@ input.addEventListener("keyup", (event) => {
 productSearch.addEventListener("click", (event) => {
   console.log(event.target.innerHTML);
   input.value = event.target.innerHTML;
+  for (let i = 1; i <= SEARCH_DEFAULT; i++) {
+    document.querySelector(`.product${i}`).style.display = "none";
+    document.querySelector(`.product${i}`).textContent = "";
+  }
 });
 
 button.addEventListener("click", () => {
