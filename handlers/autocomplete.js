@@ -40,7 +40,7 @@ function buildResponse(value) {
   //Get sorted array of the objects.
   let tempArr = Object.entries(tempObj).sort((a, b) => b[1] - a[1]);
   //convert first 5 entries into an object
-  return tempObj.slice(0, Math.min(AUTOCOMPLETE_NUM, tempArr.length));
+  return tempArr.slice(0, Math.min(AUTOCOMPLETE_NUM, tempArr.length));
 }
 
 function autocompleteHandler(request, response) {
