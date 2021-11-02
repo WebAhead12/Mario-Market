@@ -17,6 +17,7 @@ function updatePriorityList() {
 }
 updatePriorityList();
 
+//Increment the priority of an item.
 function incrementValue(val) {
   priorityJson[val] = priorityJson[val] + 1;
   fs.writeFileSync(__dirname + "/../Data/priority.json", JSON.stringify(priorityJson, undefined, 2));
@@ -25,7 +26,7 @@ function incrementValue(val) {
 function buildResponse(value) {
   //Check if value is complete
   for (const val in priorityJson) {
-    if (val == value) return;
+    if (val.toLocaleLowerCase() == value.toLocaleLowerCase) return {};
   }
   let tempObj = {};
   for (const priorityVal in priorityJson) {
@@ -42,7 +43,7 @@ function buildResponse(value) {
 function autocompleteHandler(request, response) {
   const url = request.url;
   const urlArray = url.split("/");
-  const value = urlArray[1];
+  const value = urlArray[2];
 
   response.writeHead(200, { "content-type": "application/json" });
   response.end(JSON.stringify(buildResponse(value)));
