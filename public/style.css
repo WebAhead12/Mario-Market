@@ -59,3 +59,8 @@ h1 {
   border: 1px solid #ccc;
   opacity: 0;
 }
+
+.results {
+  background-color: black;
+  opacity: 0;
+}

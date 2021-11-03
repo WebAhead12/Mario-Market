@@ -1,6 +1,7 @@
 const input = document.querySelector(".productInputs");
 const button = document.querySelector(".search");
 const productSearch = document.querySelector(".Products");
+
 const SEARCH_DEFAULT = 5; // ade ybyn bl suggested
 
 function fetchAutoComplete() {
@@ -16,15 +17,21 @@ function fetchAutoComplete() {
       if (data.length == 0) {
         for (let i = 0; i < SEARCH_DEFAULT; i++) {
           document.querySelector(`.product${i}`).style.opacity = 0;
+          document.querySelector(`.product${i}`).style.display = "none";
+
           document.querySelector(`.product${i}`).textContent = "";
         }
       } else {
         for (let i = 0; i < SEARCH_DEFAULT; i++) {
           if (i < data.length) {
             document.querySelector(`.product${i}`).style.opacity = 1;
+            document.querySelector(`.product${i}`).style.display = "block";
+
             document.querySelector(`.product${i}`).textContent = data[i];
           } else {
             document.querySelector(`.product${i}`).style.opacity = 0;
+            document.querySelector(`.product${i}`).style.display = "none";
+
             document.querySelector(`.product${i}`).textContent = "";
           }
         }
@@ -37,6 +44,8 @@ input.addEventListener("keyup", (event) => {
   if (input.value == "") {
     for (let i = 0; i < SEARCH_DEFAULT; i++) {
       document.querySelector(`.product${i}`).style.opacity = 0;
+      document.querySelector(`.product${i}`).style.display = "none";
+
       document.querySelector(`.product${i}`).textContent = "";
     }
     return;
