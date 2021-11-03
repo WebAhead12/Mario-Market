@@ -1,18 +1,60 @@
-body {
+/* body {
   max-width: 60rem;
   margin: 0 auto;
   padding: 2rem;
   font-family: monospace;
   font-size: 1rem;
-  background-color: black;
+  background-color: blue;
   color: white;
-}
+} */
 
 img {
   max-width: 100%;
   height: auto;
 }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+  text-align: center;
+  font-family: "Viga", sans-serif;
+  color: #f44336;
+}
+
+.container {
+  width: 400px;
+  margin: 20px auto;
+}
+.form {
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+.productInputs {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+}
+.search {
+  border: none;
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-left: 10px; /* to move away 10px left from the input */
+  cursor: pointer;
+}
 
 .prod {
-  display: none;
+  margin-top: 10px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
 }
