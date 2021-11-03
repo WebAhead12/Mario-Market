@@ -1,13 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 const dataJson = require("./../Data/products.json");
-
+const autocomplete = require("./../handlers/autocomplete.js");
 function buildResponse(value) {
   value = decodeURI(value);
   const found = dataJson.find(
     (element) => element.title.toLowerCase() == value
   );
   if (found) {
+    autocomplete.incrementValue(found.title);
     return {
       name: found.title,
       description: found.description,
