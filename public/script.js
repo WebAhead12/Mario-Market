@@ -1,6 +1,7 @@
 const input = document.querySelector(".productInputs");
 const button = document.querySelector(".search");
 const productSearch = document.querySelector(".Products");
+const resultsContainer = document.querySelector(".results");
 
 const SEARCH_DEFAULT = 5; // ade ybyn bl suggested
 
@@ -55,6 +56,10 @@ input.addEventListener("keyup", (event) => {
 
 productSearch.addEventListener("click", (event) => {
   console.log(event.target.innerHTML);
+  if (event.target == productSearch) {
+    return;
+  }
+
   input.value = event.target.innerHTML;
   fetchAutoComplete();
 });
@@ -71,9 +76,18 @@ button.addEventListener("click", () => {
       if (!response.ok) throw new Error(response.status);
       return response.json();
     })
+    // the returned object
+    // if object has no name log in has no name
     .then((results) => {
-      // the returned object
-      // if object has no name log in has no name
-      console.log(results.name);
+      let name = document.querySelector(".productName");
+      let description = document.querySelector(".description");
+      let price = document.querySelector(".price");
+      let image = document.querySelector(".img");
+      description.textContent = "Description: " + results.description;
+      name.textContent = results.name;
+      price.textContent = "Price: " + results.price;
+      image.src = `/assets/images/${results.image}`;
+      resultsContainer.style.display = "block";
+      resultsContainer.style.opacity = 1;
     });
 });

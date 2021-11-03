@@ -60,6 +60,8 @@ h1 {
   background-color: #eee;
   margin-top: 10px;
   border-radius: 10px;
+  display: none;
+  opacity: 0;
 }
 img {
   width: 200px;
@@ -72,6 +74,6 @@ img {
 .description {
   padding: 0 10px;
 }
-.Price {
+.price {
   padding-left: 10px;
 }

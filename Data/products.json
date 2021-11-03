@@ -10,6 +10,16 @@
     "rating": 4
   },
   {
+    "title": "Mario",
+    "type": "mario",
+    "description": "Mentor Mario",
+    "filename": "Mario.jpg",
+    "height": 600,
+    "width": 400,
+    "price": "priceless",
+    "rating": 4
+  },
+  {
     "title": "Sweet fresh stawberry",
     "type": "fruit",
     "description": "Sweet fresh stawberry on the wooden table",
