@@ -87,6 +87,8 @@ button.addEventListener("click", () => {
       name.textContent = results.name;
       price.textContent = "Price: " + results.price;
       image.src = `/assets/images/${results.image}`;
+      console.log(image.src);
+
       resultsContainer.style.display = "block";
       resultsContainer.style.opacity = 1;
     });
