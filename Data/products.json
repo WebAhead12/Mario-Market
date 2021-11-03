@@ -268,6 +268,15 @@
   "width": 300,
   "price": 29.97,
   "rating": 3
+},{
+  "title": "Granola bar",
+  "type": "dairy",
+  "description": "Glass jar with homemade granola and yogurt with nuts, raspberries and blackberries on wooden cutting board over white textile in day light",
+  "filename": "29.jpg",
+  "height": 450,
+  "width": 300,
+  "price": 29.97,
+  "rating": 3
 }, {
   "title": "Smoothie with chia seeds",
   "type": "fruit",

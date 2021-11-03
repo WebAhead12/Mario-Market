@@ -24,20 +24,21 @@ function incrementValue(val) {
 }
 
 function buildResponse(value) {
-  //Check if value is complete
-  for (const val in priorityJson) {
-    if (val.toLocaleLowerCase() == value.toLocaleLowerCase) return {};
-  }
+  const priorityJsonClone = Object.assign({}, priorityJson);
+  value = decodeURI(value);
   let tempObj = {};
+
   for (const priorityVal in priorityJson) {
-    if (priorityVal.slice(0, value.length).toLocaleLowerCase() == value.toLowerCase()) tempObj[priorityVal] = priorityJson[priorityVal];
+    // if (priorityVal.slice(0, value.length).toLowerCase() == value) tempObj[priorityVal] = priorityJsonClone[priorityVal];
+    if (priorityVal.toLowerCase().indexOf(value) === 0) tempObj[priorityVal] = priorityJson[priorityVal];
   }
+  //Remove same word from complete
+  for (const tempVal in tempObj) if (tempVal.toLowerCase() == value) delete tempObj[tempVal];
+
   //Get sorted array of the objects.
   let tempArr = Object.entries(tempObj).sort((a, b) => b[1] - a[1]);
   //convert first 5 entries into an object
-  tempObj = {};
-  for (let i = 0; i < AUTOCOMPLETE_NUM && i < tempArr.length; i++) tempObj[i] = tempArr[i][0];
-  return tempObj;
+  return tempArr.slice(0, Math.min(AUTOCOMPLETE_NUM, tempArr.length)).map((val) => val[0]);
 }
 
 function autocompleteHandler(request, response) {
@@ -46,7 +47,7 @@ function autocompleteHandler(request, response) {
   const value = urlArray[2];
 
   response.writeHead(200, { "content-type": "application/json" });
-  response.end(JSON.stringify(buildResponse(value)));
+  response.end(JSON.stringify(buildResponse(value.toLowerCase())));
 }
 
 module.exports = { autocompleteHandler, incrementValue };
