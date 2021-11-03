@@ -66,12 +66,14 @@ button.addEventListener("click", () => {
     productSearch.innerHTML = "";
     return;
   }
-  fetch(`data/${inputSearch.value}`)
+  fetch(`data/${inputSearch}`)
     .then((response) => {
       if (!response.ok) throw new Error(response.status);
       return response.json();
     })
     .then((results) => {
-      //add the results to the screen
+      // the returned object
+      // if object has no name log in has no name
+      console.log(results.name);
     });
 });
