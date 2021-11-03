@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 function sendMissing(response) {
-  const filePath = path.join(__dirname, "../Data/assets/images/missing.jpg");
+  const filePath = path.join(__dirname, "../Data/assets/images/404.jpg");
   fs.readFile(filePath, (error, file) => {
     response.writeHead(200, { "content-type": "image/jpeg" });
     response.end(file);
