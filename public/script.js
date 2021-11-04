@@ -88,7 +88,7 @@ button.addEventListener("click", () => {
       let image = document.querySelector(".img");
       description.textContent = "Description: " + results.description;
       name.textContent = results.name;
-      price.textContent = "Price: " + results.price;
+      price.textContent = "Price: " + results.price + "$";
       image.src = `/assets/images/${results.image}`;
       console.log(image.src);
 
