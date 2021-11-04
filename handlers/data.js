@@ -1,5 +1,3 @@
-const fs = require("fs");
-const path = require("path");
 const dataJson = require("./../Data/products.json");
 const autocomplete = require("./../handlers/autocomplete.js");
 //function that checks if the searched input is in the products.json

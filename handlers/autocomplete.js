@@ -4,7 +4,6 @@ const path = require("path");
 const AUTOCOMPLETE_NUM = 5;
 
 let priorityJson = require(path.join("..","Data","priority.json"));
-const dataJson = require(path.join("..","Data","products.json"));
 
 //Increment the priority of an item.
 function incrementValue(val) {
