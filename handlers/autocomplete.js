@@ -3,22 +3,8 @@ const path = require("path");
 
 const AUTOCOMPLETE_NUM = 5;
 
-let priorityJson = require(__dirname + "/../Data/priority.json");
-const dataJson = require(__dirname + "/../Data/products.json");
-
-//Runs once on server start up and updates/removes priority list with any missing/extra values.
-function updatePriorityList() {
-  let tempObj = {};
-  for (const val of dataJson) {
-    tempObj[val["title"]] = priorityJson[val["title"]] || 0;
-  }
-  priorityJson = tempObj;
-  fs.writeFileSync(
-    __dirname + "/../Data/priority.json",
-    JSON.stringify(priorityJson, undefined, 2)
-  );
-}
-updatePriorityList();
+let priorityJson = require(path.join("..","Data","priority.json"));
+const dataJson = require(path.join("..","Data","products.json"));
 
 //Increment the priority of an item.
 function incrementValue(val) {
@@ -46,7 +32,7 @@ function buildResponse(value) {
   let tempArr = Object.entries(tempObj).sort((a, b) => b[1] - a[1]);
   //convert first 5 entries into an object
   return tempArr
-    .slice(0, Math.min(AUTOCOMPLETE_NUM, tempArr.length))
+    .slice(0, AUTOCOMPLETE_NUM)
     .map((val) => val[0]);
 }
 
