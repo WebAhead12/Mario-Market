@@ -12,9 +12,9 @@ The ability to look up supermarket products
 
 
 # Work Distribution
-script.js : Hala + help from Juan. <br>
-CSS : Eitab. <br> 
-index.html:Hala and Eitab. <br>
+script.js: Hala + help from Juan. <br>
+CSS: Eitab. <br> 
+index.html: Hala and Eitab. <br>
 autocomplete: Juan. <br>
 data.js: Hala. <br>
 
